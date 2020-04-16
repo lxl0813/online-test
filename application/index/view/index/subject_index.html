@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+</html><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>面试题库</title>
+    <link rel="stylesheet" type="text/css" href="/index/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/index/css/interview.css"/>
+</head>
+<body>
+<div class="conter-top">
+    <div class="ctop-main">
+        <div class="ctop-mainleft">
+            <img src="/index/img/logo.png" />
+            <p>测评中心</p>
+        </div>
+        <p class="top-button">分享</p>
+    </div>
+</div>
+<br>
+<div class="conter" style="border-radius:8px;">
+    <br><br>
+    <div style="text-align: center">
+        <h2 style="color:#333333">上海让雷智能科技有限公司</h2>
+        <font color=" #999999 " style="color: #E2E9F0">感谢您能抽出几分钟时间来参加本次答题，现在我们就马上开始吧！</font>
+    </div>
+    <hr style="margin-left:20px;margin-right:20px">
+    <ol style="padding-left:30px">
+        {volist name="a" id="data"}
+            <li>
+                <div style="text-align:left;margin-left:20px;margin-top:40px">
+                    {if $data.is_more==1}
+                        Q{$b++}:(单选){$data.name}
+                    {elseif $data.is_more==2}
+                        Q{$b++}:(多选){$data.name}
+                    {else}
+                        Q{$b++}:(问答){$data.name}
+                    {/if}
+
+                    <div style="margin-top:20px;margin-left:30px">
+                        {if $data.status==1}
+                            {volist name="data.d_wen" id="ti"}
+                            <div>{$ti}</div>
+                            {/volist}
+                        {elseif $data.status==2 }
+                            <img src="{$data.d_img}" width="700px" height="150px">
+                        {else}
+                            <div style="height:180px">
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+            </li>
+        {/volist}
+    </ol>
+
+
+    <div style="height: 100px"></div>
+
+</div>
+<div style="height: 50px"></div>
+<div class="bottom-bottom">
+    <ul>
+        <li>©2020 Ranglei 版权所有</li>
+        <li>沪ICP备1003999号-3</li>
+    </ul>
+</div>
+</body>
+</html>

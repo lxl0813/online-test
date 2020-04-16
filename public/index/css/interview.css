@@ -1,0 +1,133 @@
+body {
+	background: #E6EEF5;
+}
+.conter-top {
+	width:100%;
+	height:70px;
+	line-height: 70px;
+	background:rgba(255,255,255,1);
+	box-shadow:0px 3px 6px 0px rgba(8,1,3,0.06);
+}
+.ctop-main {
+	width: 1000px;
+	margin: 0 auto;
+	display: flex;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	justify-content: space-between;
+}
+.ctop-mainleft {
+	display: flex;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+}
+.ctop-mainleft p {
+	margin-left: 12px;
+	color: #213365;
+	font-size: 16px;
+}
+.ctop-mainleft img {
+	width: 136px;
+	height: 48px;
+	margin-top: 12px;
+}
+.top-button {
+	width:90px;
+	height:30px;
+	background:#FFFFFF;
+	border:1px solid rgba(219, 226, 233, 1);
+	border-radius:15px;
+	color: #999999;
+	font-size: 14px;
+	text-align: center;
+	line-height: 30px;
+	margin-top: 20px;
+}
+.conter {
+	width: 1000px;
+	/*height: 741px;*/
+	margin: 0 auto;
+	background: #FFFFFF;
+}
+.conter-img {
+	width: 940px;
+	height: 444px;
+	background: url(../../index/img/Interbanner.png) no-repeat;
+	margin: 9px auto;
+	overflow: hidden;
+}
+.conter-title {
+	font-size: 48px;
+	width: 86%;
+	margin: 150px auto 10px auto;
+	text-align: left;
+	color: #FFFFFF;
+}
+.conter-p {
+	font-size: 18px;
+	width: 86%;
+	margin: 0 auto;
+	text-align: left;
+	color: #FFFFFF;
+	font-family:PingFang SC;
+	font-weight:400;
+}
+.bule-button {
+	display: block;
+	width:142px;
+	height:42px;
+	background:rgba(25,91,190,1);
+	border-radius:4px;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 42px;
+	margin: 30px auto auto auto;
+}
+.bule-button:hover {
+	color: #FFFFFF !important;
+}
+.careful {
+	width: 94%;
+	height: 50px;
+	line-height: 50px;
+	margin: 0 auto;
+	text-align: left;
+	color: #000000;
+	font-size: 18px;
+	font-weight: 600;
+}
+.careful1 {
+	width: 94%;
+	height: 25px;
+	margin: 0 auto;
+	text-align: left;
+	color: #000000;
+	font-size: 14px;
+}
+.careful2 {
+	width: 94%;
+	height: 25px;
+	margin: auto auto 50px auto;
+	text-align: left;
+	color: #000000;
+	font-size: 14px;
+}
+.bottom-bottom {
+	bottom:0;
+	position:absolute;
+	width:100%;
+	height:30px;
+	line-height: 30px;
+	background:rgba(51,51,51,1);
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 12px;
+}
+.bottom-bottom ul {
+	width: 267px;
+	margin: 0 auto;
+	display: flex;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	justify-content: space-between;
+}

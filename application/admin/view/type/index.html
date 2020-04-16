@@ -1,0 +1,341 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>上海让雷测评题库后台管理系统</title>
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+
+<body data-type="generalComponents">
+
+    <!--左侧功能列表引入-->
+    {include file="public:top"}
+
+    <div class="tpl-page-container tpl-page-header-fixed">
+        <!--左侧功能列表引入-->
+        <div class="tpl-left-nav tpl-left-nav-hover">
+            <div class="tpl-left-nav-title">
+                让雷测评管理系统
+            </div>
+            <div class="tpl-left-nav-list">
+                <ul class="tpl-left-nav-menu">
+                    <li class="tpl-left-nav-item">
+                        <a href="{:url('Index/index')}" class="nav-link">
+                            <i class="am-icon-home"></i>
+                            <span>首页</span>
+                        </a>
+                    </li>
+                    <li class="tpl-left-nav-item">
+                        <a href="javascript:;" class="nav-link tpl-left-nav-link-list active">
+                            <i class="am-icon-bar-chart"></i>
+                            <span>维度中心</span>
+                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        </a>
+                        <ul class="tpl-left-nav-sub-menu" style="display:block">
+                            <li>
+                                <a href="{:url('Type/index')}" class="active">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>维度列表</span>
+                                    <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                上海让雷测评题库后台管理系统
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="#" class="am-icon-home">首页</a></li>
+                <li><a href="#">维度</a></li>
+                <li class="am-active">维度列表</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 列表
+                    </div>
+                </div>
+                <div class="tpl-block">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button type="button" id="add" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span>新增</button>
+                                    <button type="button" id="delete" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
+                                    <button type="button" id="set" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span>设置</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-form-group">
+                                <select data-am-selected="{btnSize: 'sm'}">
+                                    <option value="option1">所有维度</option>
+                                    {volist name="type" id="data"}
+                                        <option value="{$data.id}">{$data.type_name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="am-g">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center" class="table-check"><input type="checkbox" disabled="true" class="tpl-table-fz-check"></th>
+                                            <th style="text-align: center" class="table-id">ID</th>
+                                            <th style="text-align: center" class="table-title">维度</th>
+                                            <th style="text-align: center" class="table-type">题目数量</th>
+                                            <th style="text-align: center" class="table-author am-hide-sm-only">状态（点击可更改）</th>
+                                            <th style="text-align: center" class="table-date am-hide-sm-only">修改日期</th>
+                                            <th class="table-set">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {volist name="type" id="data"}
+                                    <tr>
+                                        <td style="text-align: center"><input type="checkbox" value="{$data.id}" name="weidu"></td>
+                                        <td style="text-align: center">{$data.id}</td>
+                                        <td style="text-align: center"><a href="#">{$data.type_name}</a></td>
+                                        <td style="text-align: center">{$data.subject_nums}</td>
+                                        {if $data.status==1}
+                                        <td style="text-align: center" id="{$data.id}" class="qi" class="am-hide-sm-only">
+                                            <a href="javascript:volid(0);">开启</a>
+                                        </td>
+                                        {else /}
+                                        <td style="text-align: center" id="{$data.id}" class="guan" class="am-hide-sm-only">
+                                            <a href="javascript:volid(0);">关闭</a>
+                                        </td>
+                                        {/if}
+                                        <td style="text-align: center"class="am-hide-sm-only">{:date('Y-m-d H:i:s',$data.time)}</td>
+                                        <td style="text-align: center">
+                                            <div class="am-btn-toolbar" style="text-align:center;">
+                                                <div class="am-btn-group am-btn-group-xs">
+                                                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                                        <span class="am-icon-pencil-square-o"></span>
+                                                        <a href="#" id="{$data.type_name}" value="{$data.id}" class="bianji">编辑</a>
+                                                    </button>
+
+                                                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                                        <span class="am-icon-copy"></span>
+                                                        <a href="{:url('Type/details',['id'=>$data.id])}">详情</a>
+                                                    </button>
+
+                                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                                        <span class="am-icon-trash-o"></span>
+                                                        <a href="#">删除</a>
+                                                    </button>
+
+                                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                                        <span class="am-icon-plus"></span>
+                                                        <a href="{:url('Subject/add',['type_id'=>$data.id])}">新增题目</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {/volist}
+
+                                    </tbody>
+                                </table>
+
+                                <hr>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tpl-alert"></div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script src="/assets/js/jquery-2.1.1.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <script src="/layer/layer.js"></script>
+
+    <script>
+        $("#add").click(function(){
+            //prompt层
+            layer.prompt({title: '输入维度名称，并确认', formType: 3,offset: '300px'},function(name, index){
+                //alert(name);exit;
+                $.ajax({
+                    type:"POST",
+                    url:"{:url('Type/add')}",
+                    data:{
+                        name:name,
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        layer.close(index);
+                        if(data.status == 1){
+                            layer.close(index);
+                            layer.alert(data.msg,{offset: '300px'},function(){
+                                window.location.reload();
+                            })
+                        }else{
+                            layer.alert(data.msg,{offset: '300px'});
+                        }
+                    }
+                });
+            });
+        })
+        //维度名称修改
+        $(".bianji").click(function(){
+            var old_name = $(this).attr('id');
+            var id = $(this).attr('value');
+            layer.prompt({title: '输入维度名称，并确认', formType: 3,value:old_name,offset: '300px'},function(name, index){
+                //alert(name);exit;
+                $.ajax({
+                    type:"POST",
+                    url:"{:url('Type/update')}",
+                    data:{
+                        name:name,
+                        id:id,
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        layer.close(index);
+                        if(data.status == 1){
+                            layer.close(index);
+                            layer.alert(data.msg,{offset: '300px'},function(){
+                                window.location.reload();
+                            })
+                        }else{
+                            layer.alert(data.msg,{offset: '300px'});
+                        }
+                    }
+                });
+            });
+        })
+
+        //状态修改
+        $('.qi').click(function(){
+            var id = $(this).attr('id');
+            $(this).replaceWith('<td style="text-align: center" id="{$data.id}" class="guan" class="am-hide-sm-only"><a href="javascript:volid(0);">关闭</a> </td>');
+            $.ajax({
+                type: "POST",
+                url: "{:url('Type/qi')}",
+                data: {
+                    id:id,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 1) {
+                        layer.msg(data.msg);
+                        setInterval(function(){
+                            window.location.reload()
+                        }, 800);
+                    }
+                    if(data.status==2){
+                        layer.msg(data.msg)
+                    }
+                }
+            });
+        })
+
+        //状态修改
+        $('.guan').click(function(){
+            var id = $(this).attr('id');
+            $(this).replaceWith('<td style="text-align: center" id="{$data.id}" class="qi" class="am-hide-sm-only"><a href="javascript:volid(0);">开启</a> </td>');
+            $.ajax({
+                type: "POST",
+                url: "{:url('Type/guan')}",
+                data: {
+                    id:id,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 1) {
+                        layer.msg(data.msg);
+                        setInterval(function(){
+                            window.location.reload()
+                        }, 800);
+                    }
+                    if(data.status==2){
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+        })
+
+        //批量删除
+        $('#delete').click(function(){
+            var id = [];
+            $("input:checkbox[name='weidu']:checked").each(function () {
+                id.push($(this).val());
+            })
+            if(id.length==0){
+                layer.alert('您还没有选择维度');
+                exit;
+            }
+            layer.confirm('确认要全部删除吗？',function(index) {
+                $.ajax({
+                    type: "post",
+                    url: "{:url('Type/delete_all')}",
+                    data: {
+                        id: id
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.status == 1) {
+                            layer.msg(data.msg);
+                            setInterval(function(){
+                                window.location.reload()
+                            }, 1000);
+                        }
+                        if(data.status==2){
+                            layer.msg(data.msg);
+                        }
+                    }
+                })
+            })
+        })
+
+        $("#set").click(function(){
+            layer.prompt({title: '输入每个维度下的随机出题数量，并确认', formType: 3,offset: '300px'},function(name, index){
+                $.ajax({
+                    type:"POST",
+                    url:"{:url('Type/rule')}",
+                    data:{
+                        name:name,
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        layer.close(index);
+                        if(data.status == 1){
+                            layer.close(index);
+                            layer.alert(data.msg,{offset: '300px'},function(){
+                                window.location.reload();
+                            })
+                        }else{
+                            layer.alert(data.msg,{offset: '300px'});
+                        }
+                    }
+                });
+            });
+        })
+
+    </script>
+	
+</body>
+</html>

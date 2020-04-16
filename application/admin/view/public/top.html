@@ -1,0 +1,40 @@
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+        <a href="javascript:;" class="tpl-logo">
+            <img src="/index/img/logo.png" alt="">
+        </a>
+    </div>
+    <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
+
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
+            <li><a href="#" id="out" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size">退出</span></a></li>
+        </ul>
+    </div>
+</header>
+<script src="/assets/js/jquery-2.1.1.js"></script>
+<script src="/layer/layer.js"></script>
+<script>
+    $("#out").click(function(){
+        $.ajax({
+            type:"POST",
+            url:"{:url('Index/out')}",
+            data:{},
+            dataType:"json",
+            success:function(data){
+                if(data.status == 1){
+                    layer.msg("成功退出");
+                    setInterval(function(){
+                        window.location.href = "Index/index";
+                    }, 1000);
+                }
+            }
+        });
+    })
+
+</script>

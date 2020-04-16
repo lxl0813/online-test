@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+
+<body data-type="generalComponents">
+    <!--左侧功能列表引入-->
+    {include file="public:top"}
+
+    <div class="tpl-page-container tpl-page-header-fixed">
+
+        <div class="tpl-left-nav tpl-left-nav-hover">
+            <div class="tpl-left-nav-title">
+                让雷测评管理系统
+            </div>
+            <div class="tpl-left-nav-list">
+                <ul class="tpl-left-nav-menu">
+                    <li class="tpl-left-nav-item">
+                        <a href="{:url('Index/index')}" class="nav-link">
+                            <i class="am-icon-home"></i>
+                            <span>首页</span>
+                        </a>
+                    </li>
+                    <li class="tpl-left-nav-item">
+                        <a href="javascript:;" class="nav-link tpl-left-nav-link-list active">
+                            <i class="am-icon-bar-chart"></i>
+                            <span>维度中心</span>
+                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        </a>
+                        <ul class="tpl-left-nav-sub-menu" style="display:block">
+                            <li>
+                                <a href="{:url('Type/index')}" class="active">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>维度列表</span>
+                                    <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                上海让雷测评题库后台管理系统
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="#" class="am-icon-home">首页</a></li>
+                <li><a href="#">维度</a></li>
+                <li class="am-active">维度详情</li>
+                <li class="am-active">题目新增</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 表单
+                    </div>
+                </div>
+
+                <div class="tpl-block">
+
+                    <div class="am-g">
+                        <div class="tpl-form-body tpl-form-line">
+                            <form class="am-form tpl-form-line-form" action="{:url('Subject/update')}" method='post' enctype="multipart/form-data">
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">题目 <span class="tpl-form-line-small-title">Title</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" name="title" id="user-name" value="{$subject.name}">
+                                        <small>请填写题目</small>
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">所属维度 <span class="tpl-form-line-small-title">DIMENSION</span></label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{btnSize: 'sm'}" name="type">
+                                            {volist name="type" id="data"}
+                                            <option value="{$data.id}" {if $data.id==$subject.type_id}selected{else/}{/if} >{$data.type_name}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <!--<div class="am-form-group">-->
+                                    <!--<label class="am-u-sm-3 am-form-label">答案类型选择 <span class="tpl-form-line-small-title">TYPE</span></label>-->
+                                    <!--<div class="am-u-sm-9">-->
+                                        <!--{if $subject.status==1}-->
+                                            <!--<input type="radio" name="status" value="1" checked>文字选项-->
+                                            <!--<input type="radio" name="status" value="2">图片选项-->
+                                            <!--<input type="radio" name="status" value="3">问答-->
+                                        <!--{elseif $subject.status==2}-->
+                                            <!--<input type="radio" name="status" value="1">文字选项-->
+                                            <!--<input type="radio" name="status" value="2" checked>图片选项-->
+                                            <!--<input type="radio" name="status" value="3">问答-->
+                                        <!--{elseif $subject.status==3}-->
+                                            <!--<input type="radio" name="status" value="1">文字选项-->
+                                            <!--<input type="radio" name="status" value="2">图片选项-->
+                                            <!--<input type="radio" name="status" value="3" checked>问答-->
+                                        <!--{else/}-->
+                                        <!--{/if}-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <br>
+                                <input type="text"  value="{$subject.status}" name="status" style="display:none">
+                                <input type="text"  value="{$subject.id}" name="id" style="display:none">
+                                {if $subject.status==1}
+                                    <div id="1" >
+                                        <div class="am-form-group"  >
+                                            <label class="am-u-sm-3 am-form-label">是否多选<span class="tpl-form-line-small-title">CHOOSE</span></label>
+                                            <div class="am-u-sm-9">
+                                                {if $subject.is_more==1}
+                                                    <input type="radio" name="xuan" value="1" checked>单选
+                                                    <input type="radio" name="xuan" value="2">多选
+                                                {elseif $subject.is_more==2}
+                                                    <input type="radio" name="xuan" value="1">单选
+                                                    <input type="radio" name="xuan" value="2" checked>多选
+                                                {else/}
+                                                {/if}
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group">
+                                            <label class="am-u-sm-3 am-form-label">答案选项 <span class="tpl-form-line-small-title">ANSWER</span></label>
+                                            <div class="am-u-sm-9">
+                                                <textarea name="daan">{$subject.d_wen}</textarea>
+                                                <small>每个选项各占一行，注意换行继续填写下个选项</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                {elseif $subject.status==2 /}
+                                    <div id="2">
+                                        <div class="am-form-group"  >
+                                            <label class="am-u-sm-3 am-form-label">是否多选<span class="tpl-form-line-small-title">CHOOSE</span></label>
+                                            <div class="am-u-sm-9">
+                                                {if $subject.is_more==1}
+                                                    <input type="radio" name="xuan" value="1" checked>单选
+                                                    <input type="radio" name="xuan" value="2">多选
+                                                {elseif $subject.is_more==2}
+                                                    <input type="radio" name="xuan" value="1">单选
+                                                    <input type="radio" name="xuan" value="2" checked>多选
+                                                {else/}
+                                                {/if}
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group"  >
+                                            <img src="{$subject.d_img}" width="550px" height="150px">
+                                            <label class="am-u-sm-3 am-form-label">上传图片 <span class="tpl-form-line-small-title">IMAGE</span></label>
+                                            <div class="am-u-sm-9">
+                                                <input  type="file" name="file">
+                                                <small>图片格式为jpg、png、jpeg、bmp</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {else/}
+                                {/if}
+                                <br>
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <input type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success" value="提交">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/assets/js/jquery-2.1.1.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+    <script>
+        $("input:radio[name=status]").click(function() {
+            var a= $('input:radio[name=status]:checked').val();
+            if(a == 1){
+                $("#1").show();
+                $("#2").hide();
+            }else if(a == 2){
+                $("#2").show();
+                $("#1").hide();
+            }else{
+                $("#2").hide();
+                $("#1").hide();
+            }
+
+        })
+    </script>
+	
+</body>
+</html>
